@@ -54,8 +54,17 @@ class ArchSampleKeys {
   static final statsNumClosed = const Key('__statsClosedItems__');
 
   // Details Screen
+  static final detailsOrderItemId = Key('DetailsOrder__ID');
+  static final detailsOrderItemStatus = Key('DetailsOrder__Status');
   static final detailsOrderItemSupplier = Key('DetailsOrder__Supplier');
   static final detailsOrderItemDescription = Key('DetailsOrder__Description');
+  static final detailsOrderItemQuantity = Key('DetailsOrder__Quantity');
+  static final detailsOrderItemUnit = Key('DetailsOrder__Unit');
+  static final detailsOrderCurrency = Key('DetailsOrder__Currency');
+  static final detailsOrderItemTotalPrice = Key('DetailsOrder__TotalPrice');
+  static final detailsOrderUpdatedDate = Key('DetailsOrder__UpdatedDate');
+  static final detailsOrderQuantityRow = Key('DetailsOrder__QuantityRow');
+  static final detailsOrderTotalPriceRow = Key('DetailsOrder__TotalPriceRow');
 
   // Add Screen
   static final addOrderScreen = const Key('__addOrderScreen__');

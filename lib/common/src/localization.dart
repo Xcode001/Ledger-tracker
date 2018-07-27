@@ -69,9 +69,30 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
-  String get inProgress => Intl.message(
-        'In Progress',
-        name: 'inProgress',
+  String get invoiceSent => Intl.message(
+        'Invoice Sent',
+        name: 'invoiceSent',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get invoiceRecieved => Intl.message(
+        'Invoice Recieved',
+        name: 'invoiceRecieved',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get paymentSent => Intl.message(
+        'Payment Sent',
+        name: 'paymentSent',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get paymentReceived => Intl.message(
+        'Payment Received',
+        name: 'paymentReceived',
         args: [],
         locale: locale.toString(),
       );
@@ -79,6 +100,27 @@ class ArchSampleLocalizations {
   String get closed => Intl.message(
         'Closed',
         name: 'closed',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get confirm => Intl.message(
+        'Confirm',
+        name: 'confirm',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get inProgress => Intl.message(
+        'In Progress',
+        name: 'inProgress',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get draft => Intl.message(
+        'Draft',
+        name: 'draft',
         args: [],
         locale: locale.toString(),
       );
@@ -132,6 +174,20 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get supplier => Intl.message(
+        'Supplier',
+        name: 'supplier',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get updated => Intl.message(
+        'Updated',
+        name: 'updated',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get desciption => Intl.message(
         'Desciption',
         name: 'desciption',
@@ -139,9 +195,37 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get status => Intl.message(
+        'Status',
+        name: 'status',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get quanity => Intl.message(
         'Quanity',
         name: 'quanity',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get price => Intl.message(
+        'Price',
+        name: 'price',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get packs => Intl.message(
+        'Packs',
+        name: 'packs',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get usd => Intl.message(
+        'USD',
+        name: 'usd',
         args: [],
         locale: locale.toString(),
       );

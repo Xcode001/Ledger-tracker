@@ -6,6 +6,7 @@ import 'package:vsii_trader/repository/orders/orders_index.dart';
 class Order {
   final String id;
   final String supplier;
+  final String retailer;
   final String desciption;
   final int quanity;
   final double totalPrice;
@@ -15,14 +16,16 @@ class Order {
   Order(
       {String id,
       String supplier,
+      String retailer,
       String desciption = '',
       int quanity,
       double totalPrice,
-      this.status = 'New Request',
+      this.status = 'NEW',
       String updatedDate})
       : this.desciption = desciption ?? '',
         this.quanity = quanity ?? 0,
-        this.supplier = supplier ?? 'VSII',
+        this.supplier = supplier ?? 'IBM',
+        this.retailer = retailer ?? 'VSII',
         this.totalPrice = totalPrice ?? 0.00,
         this.updatedDate =
             updatedDate ?? (new DateTime.now()).toString().split(' ')[0],
@@ -31,6 +34,7 @@ class Order {
   Order copyWith(
       {String id,
       String supplier,
+      String retailer,
       String desciption,
       int quanity,
       double totalPrice,
@@ -39,6 +43,7 @@ class Order {
     return Order(
       id: id ?? this.id,
       supplier: supplier ?? this.supplier,
+      retailer: retailer ?? this.retailer,
       desciption: desciption ?? this.desciption,
       quanity: quanity ?? this.quanity,
       totalPrice: totalPrice ?? this.totalPrice,
@@ -50,6 +55,7 @@ class Order {
   @override
   int get hashCode =>
       supplier.hashCode ^
+      retailer.hashCode ^
       desciption.hashCode ^
       status.hashCode ^
       updatedDate.hashCode ^
@@ -61,6 +67,7 @@ class Order {
       other is Order &&
           runtimeType == other.runtimeType &&
           supplier == other.supplier &&
+          retailer == other.retailer &&
           desciption == other.desciption &&
           status == other.status &&
           updatedDate == other.updatedDate &&
@@ -68,18 +75,19 @@ class Order {
 
   @override
   String toString() {
-    return 'OrderEntity{supplier: $supplier, desciption: $desciption, quanity: $quanity, totalPrice: $totalPrice, status: $status, updatedDate: $updatedDate, id: $id}';
+    return 'OrderEntity{supplier: $supplier, retailer: $retailer, desciption: $desciption, quanity: $quanity, totalPrice: $totalPrice, status: $status, updatedDate: $updatedDate, id: $id}';
   }
 
   OrderEntity toEntity() {
-    return OrderEntity(
-        id, supplier, desciption, quanity, totalPrice, status, updatedDate);
+    return OrderEntity(id, supplier, retailer, desciption, quanity, totalPrice,
+        status, updatedDate);
   }
 
   static Order fromEntity(OrderEntity entity) {
     return Order(
       id: entity.id ?? Uuid().generateV4(),
-      supplier: entity.supplier ?? 'VSII',
+      supplier: entity.supplier ?? 'IBM',
+      retailer: entity.retailer ?? 'VSII',
       desciption: entity.desciption ?? '',
       quanity: entity.quanity ?? 0,
       totalPrice: entity.totalPrice ?? 0.00,
