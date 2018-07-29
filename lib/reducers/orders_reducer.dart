@@ -15,15 +15,7 @@ final ordersReducer = combineReducers<List<Order>>([
 
 List<Order> _addOrder(List<Order> orders, AddOrderAction action) {
   final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
-  _orderRepository.saveOrder(OrderEntity(
-      action.order.id,
-      action.order.supplier,
-      action.order.retailer,
-      action.order.desciption,
-      action.order.quanity,
-      action.order.totalPrice,
-      action.order.status,
-      action.order.updatedDate));
+  _orderRepository.saveOrder(action.order);
   return List.from(orders)..add(action.order);
 }
 

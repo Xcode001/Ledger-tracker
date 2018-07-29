@@ -137,7 +137,7 @@ class DetailsScreen extends StatelessWidget {
 
                       // Quantity
                       Hero(
-                        tag: '${order.quanity}__heroTag',
+                        tag: '${order.quantity}__heroTag',
                         child: Container(
                           width: MediaQuery.of(context).size.width,
                           padding: EdgeInsets.only(
@@ -155,7 +155,7 @@ class DetailsScreen extends StatelessWidget {
                         key: ArchSampleKeys.detailsOrderQuantityRow,
                         children: [
                           Text(
-                            order.quanity.toString(),
+                            order.quantity.toString(),
                             key: ArchSampleKeys.detailsOrderItemQuantity,
                             style: Theme.of(context).textTheme.display1,
                           ),

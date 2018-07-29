@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:vsii_trader/repository/orders/order_entity.dart';
+import 'package:vsii_trader/models/user.dart';
 
-/// Loads and saves a List of Orders using a text file stored on the device.
 class FileStorage {
   final String tag;
   final Future<Directory> Function() getDirectory;
@@ -14,29 +13,27 @@ class FileStorage {
     this.getDirectory,
   );
 
-  Future<List<OrderEntity>> loadOrders() async {
+  Future<User> loadUuser() async {
     final file = await _getLocalFile();
     final string = await file.readAsString();
     final json = JsonDecoder().convert(string);
-    final orders = (json['orders'])
-        .map<OrderEntity>((order) => OrderEntity.fromJson(order))
-        .toList();
+    final user = (json['user']).map<User>((user) => User.fromJson(user));
 
-    return orders;
+    return user;
   }
 
-  Future<File> saveOrders(List<OrderEntity> orders) async {
+  Future<File> saveUser(User user) async {
     final file = await _getLocalFile();
 
     return file.writeAsString(JsonEncoder().convert({
-      'orders': orders.map((order) => order.toJson()).toList(),
+      'user': user.toJson(),
     }));
   }
 
   Future<File> _getLocalFile() async {
     final dir = await getDirectory();
 
-    return File('${dir.path}/ArchSampleStorage__$tag.json');
+    return File('${dir.path}/UserStorage__$tag.json');
   }
 
   Future<FileSystemEntity> clean() async {

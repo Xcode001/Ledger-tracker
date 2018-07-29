@@ -5,12 +5,14 @@ import 'package:vsii_trader/models/models.dart';
 class AppState {
   final bool isLoading;
   final List<Order> orders;
+  final User user;
   final AppTab activeTab;
   final VisibilityFilter activeFilter;
 
   AppState(
       {this.isLoading = false,
       this.orders = const [],
+      this.user,
       this.activeTab = AppTab.orders,
       this.activeFilter = VisibilityFilter.all});
 

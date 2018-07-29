@@ -1,30 +1,16 @@
 import 'dart:async';
 
-import 'package:vsii_trader/repository/orders/order_entity.dart';
+import 'package:vsii_trader/models/user.dart';
 
 class WebClient {
-  final Duration delay;
+  const WebClient();
 
-  const WebClient([this.delay = const Duration(milliseconds: 3000)]);
-
-  Future<List<OrderEntity>> fetchOrders() async {
-    return Future.delayed(
-        delay,
-        () => [
-              OrderEntity(
-                '1',
-                'Apple',
-                'VSII',
-                'Iphone Order 1',
-                100,
-                2000.00,
-                'New Request',
-                '16/01/2018',
-              ),
-            ]);
+  Future<User> fetchUser() async {
+    return User(
+        username: 'IBM', email: '4202', phone: 'phone', role: 'Retailer');
   }
 
-  Future<bool> postOrders(List<OrderEntity> orders) async {
+  Future<bool> postUser(User user) async {
     return Future.value(true);
   }
 }

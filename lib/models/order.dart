@@ -1,31 +1,61 @@
 import 'package:vsii_trader/common/uuid.dart';
 import 'package:meta/meta.dart';
 import 'package:vsii_trader/repository/orders/orders_index.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'order.g.dart';
+
+@JsonSerializable()
 @immutable
-class Order {
+class Order extends Object with _$OrderSerializerMixin {
+  @JsonKey(name: 'orderId')
   final String id;
-  final String supplier;
-  final String retailer;
+
+  final String supplier = "resource:com.vsii.trd.ordertracker.Supplier#4696";
+
+  final String retailer = "resource:com.vsii.trd.ordertracker.Retailer#7727";
+
+  @JsonKey(name: 'product')
   final String desciption;
-  final int quanity;
+
+  final String unitType = 'BOX';
+
+  final int quantity;
+
+  @JsonKey(name: 'amount')
   final double totalPrice;
+
+  final String currency = 'USD';
+
+  final String paymentMethod = 'BANK_TRANSFER';
+
+  final String startedDate = '2018-07-27T08:35:53.206Z';
+
   final String status;
+
+  @JsonKey(name: 'lastUpdatedDate')
   final String updatedDate;
 
-  Order(
-      {String id,
-      String supplier,
-      String retailer,
-      String desciption = '',
-      int quanity,
-      double totalPrice,
-      this.status = 'NEW',
-      String updatedDate})
-      : this.desciption = desciption ?? '',
-        this.quanity = quanity ?? 0,
-        this.supplier = supplier ?? 'IBM',
-        this.retailer = retailer ?? 'VSII',
+  @JsonKey(name: '\u{0024}class')
+  final String orderClass = "com.vsii.trd.ordertracker.Order";
+
+  Order({
+    String id,
+    String supplier,
+    String retailer,
+    String desciption = '',
+    String unitType,
+    int quantity,
+    double totalPrice,
+    String currency,
+    String paymentMethod,
+    String startedDate,
+    String status,
+    String updatedDate,
+    String orderClass,
+  })  : this.desciption = desciption ?? '',
+        this.quantity = quantity ?? 0,
+        this.status = 'NEW',
         this.totalPrice = totalPrice ?? 0.00,
         this.updatedDate =
             updatedDate ?? (new DateTime.now()).toString().split(' ')[0],
@@ -36,7 +66,7 @@ class Order {
       String supplier,
       String retailer,
       String desciption,
-      int quanity,
+      int quantity,
       double totalPrice,
       String status,
       String updatedDate}) {
@@ -45,7 +75,7 @@ class Order {
       supplier: supplier ?? this.supplier,
       retailer: retailer ?? this.retailer,
       desciption: desciption ?? this.desciption,
-      quanity: quanity ?? this.quanity,
+      quantity: quantity ?? this.quantity,
       totalPrice: totalPrice ?? this.totalPrice,
       status: status ?? this.status,
       updatedDate: updatedDate ?? this.updatedDate,
@@ -75,11 +105,11 @@ class Order {
 
   @override
   String toString() {
-    return 'OrderEntity{supplier: $supplier, retailer: $retailer, desciption: $desciption, quanity: $quanity, totalPrice: $totalPrice, status: $status, updatedDate: $updatedDate, id: $id}';
+    return 'OrderEntity{supplier: $supplier, retailer: $retailer, desciption: $desciption, quanity: $quantity, totalPrice: $totalPrice, status: $status, updatedDate: $updatedDate, id: $id}';
   }
 
   OrderEntity toEntity() {
-    return OrderEntity(id, supplier, retailer, desciption, quanity, totalPrice,
+    return OrderEntity(id, supplier, retailer, desciption, quantity, totalPrice,
         status, updatedDate);
   }
 
@@ -89,10 +119,12 @@ class Order {
       supplier: entity.supplier ?? 'IBM',
       retailer: entity.retailer ?? 'VSII',
       desciption: entity.desciption ?? '',
-      quanity: entity.quanity ?? 0,
+      quantity: entity.quantity ?? 0,
       totalPrice: entity.totalPrice ?? 0.00,
       status: entity.status ?? 'New Request',
       updatedDate: entity.updatedDate ?? 'Stone age',
     );
   }
+
+  factory Order.fromJson(Map<String, dynamic> json) => _$OrderFromJson(json);
 }

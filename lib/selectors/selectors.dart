@@ -2,6 +2,7 @@ import 'package:vsii_trader/common/optional.dart';
 import 'package:vsii_trader/models/models.dart';
 
 List<Order> ordersSelector(AppState state) => state.orders;
+User userSelector(AppState state) => state.user;
 
 VisibilityFilter activeFilterSelector(AppState state) => state.activeFilter;
 

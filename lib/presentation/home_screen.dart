@@ -4,6 +4,7 @@ import 'package:vsii_trader/containers/active_tab.dart';
 import 'package:vsii_trader/containers/extra_actions_container.dart';
 import 'package:vsii_trader/containers/filter_selector.dart';
 import 'package:vsii_trader/containers/filtered_orders.dart';
+import 'package:vsii_trader/containers/choose_role.dart';
 import 'package:vsii_trader/containers/stats.dart';
 import 'package:vsii_trader/containers/tab_selector.dart';
 import 'package:vsii_trader/localization.dart';
@@ -24,6 +25,12 @@ class HomeScreen extends StatelessWidget {
               ExtraActionsContainer(),
             ],
           ),
+//          body: ChooseRole(),
+//            switch(activeTab) {
+//            case AppTab.orders: return FilteredOrders();
+//            case AppTab.role: return FilteredOrders();
+//            case AppTab.stats: return FilteredOrders();
+//          },
           body: activeTab == AppTab.orders ? FilteredOrders() : Stats(),
           floatingActionButton: FloatingActionButton(
             key: ArchSampleKeys.addOrderFab,

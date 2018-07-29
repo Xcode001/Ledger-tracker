@@ -3,13 +3,13 @@ class OrderEntity {
   final String supplier;
   final String retailer;
   final String desciption;
-  final int quanity;
+  final int quantity;
   final double totalPrice;
   final String status;
   final String updatedDate;
 
   OrderEntity(this.id, this.supplier, this.retailer, this.desciption,
-      this.quanity, this.totalPrice, this.status, this.updatedDate);
+      this.quantity, this.totalPrice, this.status, this.updatedDate);
 
   @override
   int get hashCode =>
@@ -20,23 +20,21 @@ class OrderEntity {
       updatedDate.hashCode ^
       id.hashCode;
 
-  Map<Object, Object> toJson() {
-    return {
-      "\u{0024}class": "com.vsii.trd.ordertracker.Order" as String,
-      "orderId": id,
-      "product": desciption,
-      "status": status,
-      "quantity": quanity as int,
-      "unitType": 'PCS',
-      "amount": totalPrice.round(),
-      "currency": 'USD',
-      "paymentMethod": 'BANK_TRANSFER',
-      "startedDate": "2018-07-27T08:35:53.206Z",
-      "lastUpdatedDate": updatedDate,
-      "retailer": "resource:com.vsii.trd.ordertracker.Retailer#4202",
-      "supplier": "resource:com.vsii.trd.ordertracker.Supplier#3665",
-    };
-  }
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        "quantity": quantity as int,
+        "\u{0024}class": "com.vsii.trd.ordertracker.Order" as String,
+        "orderId": id,
+        "product": desciption,
+        "status": status,
+        "unitType": 'PCS',
+        "amount": totalPrice.round() as int,
+        "currency": 'USD',
+        "paymentMethod": 'BANK_TRANSFER',
+        "startedDate": "2018-07-27T08:35:53.206Z",
+        "lastUpdatedDate": updatedDate,
+        "retailer": "resource:com.vsii.trd.ordertracker.Retailer#4202",
+        "supplier": "resource:com.vsii.trd.ordertracker.Supplier#3665",
+      };
 
   @override
   bool operator ==(Object other) =>
@@ -52,7 +50,7 @@ class OrderEntity {
 
   @override
   String toString() {
-    return 'OrderEntity{supplier: $supplier, retailer: $retailer, desciption: $desciption, quanity: $quanity, totalPrice: $totalPrice, status: $status, updatedDate: $updatedDate, id: $id}';
+    return 'OrderEntity{supplier: $supplier, retailer: $retailer, desciption: $desciption, quantity: $quantity, totalPrice: $totalPrice, status: $status, updatedDate: $updatedDate, id: $id}';
   }
 
   static OrderEntity fromJson(Map<Object, Object> json) {

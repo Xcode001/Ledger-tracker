@@ -9,11 +9,13 @@ dependencies:
   flutter_redux: ^0.5.0
   rxdart: 0.18.0
   path_provider: ">=0.2.1+1 <0.3.0"
+  json_serializable: ^0.5.2
   flutter:
     sdk: flutter
 
 dev_dependencies:
   test: ^0.12.0
+  build_runner: ^0.8.9
   mockito: ">=2.2.0 <3.0.0"
   flutter_driver:
     sdk: flutter
@@ -32,9 +34,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

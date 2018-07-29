@@ -51,7 +51,7 @@ class OrderItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    order.quanity.toString() + ' packs',
+                    order.quantity.toString() + ' packs',
                     key: ArchSampleKeys.orderItemQuantity(order.id),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,

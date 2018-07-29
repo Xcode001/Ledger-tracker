@@ -3,6 +3,7 @@ import 'dart:core';
 
 import 'package:meta/meta.dart';
 import 'package:vsii_trader/repository/orders/order_entity.dart';
+import 'package:vsii_trader/models/order.dart';
 import 'package:vsii_trader/repository/orders/orders_repository.dart';
 import 'package:vsii_trader/repository/orders/file_storage.dart';
 import 'package:vsii_trader/repository/orders/web_client.dart';
@@ -42,7 +43,7 @@ class OrdersRepositoryFlutter implements OrdersRepository {
   }
 
   @override
-  Future saveOrder(OrderEntity order) {
+  Future saveOrder(Order order) {
     return Future.wait<dynamic>([
       webClient.postOrder(order),
     ]);
