@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vsii_trader/common/flutter_architecture_samples.dart';
@@ -12,10 +14,12 @@ class OrderList extends StatelessWidget {
 //  final Function(Order, bool) onCheckboxChanged;
 //  final Function(Order) onRemove;
 //  final Function(Order) onUndoRemove;
+//  final Future<void> onRefresh;
 
   OrderList({
     Key key,
     @required this.orders,
+//    this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -25,6 +29,8 @@ class OrderList extends StatelessWidget {
       return loading
           ? LoadingIndicator(key: ArchSampleKeys.ordersLoading)
           : _buildListView();
+//          : new RefreshIndicator(
+//              child: _buildListView(), onRefresh: () => onRefresh);
     });
   }
 

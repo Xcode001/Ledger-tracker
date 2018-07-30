@@ -53,13 +53,14 @@ class Order extends Object with _$OrderSerializerMixin {
     String status,
     String updatedDate,
     String orderClass,
-  })  : this.desciption = desciption ?? '',
-        this.quantity = quantity ?? 0,
-        this.status = 'NEW',
-        this.totalPrice = totalPrice ?? 0.00,
-        this.updatedDate =
-            updatedDate ?? (new DateTime.now()).toString().split(' ')[0],
-        this.id = id ?? Uuid().generateV4();
+  })  : this.desciption = !desciption.isEmpty ? desciption : '',
+        this.quantity = quantity != null ? quantity : 0,
+        this.status = !status.isEmpty ? status : 'NEW',
+        this.totalPrice = totalPrice != null ? totalPrice : 0.00,
+        this.updatedDate = updatedDate.isEmpty
+            ? updatedDate
+            : (new DateTime.now()).toString().split(' ')[0],
+        this.id = !id.isEmpty ? id : Uuid().generateV4();
 
   Order copyWith(
       {String id,

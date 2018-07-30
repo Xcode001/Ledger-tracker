@@ -11,7 +11,14 @@ final ordersReducer = combineReducers<List<Order>>([
   TypedReducer<List<Order>, UpdateOrderAction>(_updateOrder),
   TypedReducer<List<Order>, OrdersLoadedAction>(_setLoadedOrders),
   TypedReducer<List<Order>, OrdersNotLoadedAction>(_setNoOrders),
+  TypedReducer<List<Order>, SendInvoiceAction>(_sendInvoice),
 ]);
+
+List<Order> _sendInvoice(List<Order> orders, SendInvoiceAction action) {
+  final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
+  _orderRepository.sendInvoice(action.order, action.user);
+  return List.from(orders);
+}
 
 List<Order> _addOrder(List<Order> orders, AddOrderAction action) {
   final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();

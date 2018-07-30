@@ -4,6 +4,7 @@ import 'dart:core';
 import 'package:meta/meta.dart';
 import 'package:vsii_trader/repository/orders/order_entity.dart';
 import 'package:vsii_trader/models/order.dart';
+import 'package:vsii_trader/models/user.dart';
 import 'package:vsii_trader/repository/orders/orders_repository.dart';
 import 'package:vsii_trader/repository/orders/file_storage.dart';
 import 'package:vsii_trader/repository/orders/web_client.dart';
@@ -39,6 +40,16 @@ class OrdersRepositoryFlutter implements OrdersRepository {
     return Future.wait<dynamic>([
       fileStorage.saveOrders(orders),
       webClient.postOrders(orders),
+    ]);
+  }
+
+  @override
+  Future sendInvoice(Order order, User user) {
+    return Future.wait<dynamic>([
+      webClient.sendInvoice(
+          int.parse(order.totalPrice.round().toString()),
+          'resource:' + order.orderClass + '#' + order.id,
+          'resource:' + user.userClass + '#' + user.email),
     ]);
   }
 

@@ -2,13 +2,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:vsii_trader/common/flutter_architecture_samples.dart';
 import 'package:vsii_trader/models/models.dart';
+import 'package:vsii_trader/presentation/confirm_button.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Order order;
+  final User user;
+  final Function onConfirm;
 
   DetailsScreen({
     Key key,
     @required this.order,
+    @required this.user,
+    @required this.onConfirm,
   }) : super(key: key);
 
   @override
@@ -18,7 +23,13 @@ class DetailsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(localizations.orderDetails),
-        actions: [],
+        actions: [
+          ConfirmButton(
+            order: order,
+            user: user,
+            onPressedButton: onConfirm,
+          )
+        ],
 //        actions: [
 //          IconButton(
 //            tooltip: localizations.deleteOrder,

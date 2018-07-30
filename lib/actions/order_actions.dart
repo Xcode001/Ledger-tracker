@@ -38,6 +38,18 @@ class AddOrderAction {
   }
 }
 
+class SendInvoiceAction {
+  final Order order;
+  final User user;
+
+  SendInvoiceAction(this.order, this.user);
+
+  @override
+  String toString() {
+    return 'AddOrderAction{order: $order, user: $user}';
+  }
+}
+
 class UpdateFilterAction {
   final VisibilityFilter newFilter;
 
