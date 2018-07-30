@@ -13,4 +13,12 @@ abstract class OrdersRepository {
   Future saveOrder(Order order);
 
   Future sendInvoice(Order order, User user);
+
+  Future receiveInvoice(Order order, User user);
+
+  Future sendPayment(Order order, User user);
+
+  Future receivePayment(Order order, User user);
+
+  Future closeOrder(Order order, User user);
 }

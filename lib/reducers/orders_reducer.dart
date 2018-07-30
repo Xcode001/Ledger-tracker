@@ -12,11 +12,39 @@ final ordersReducer = combineReducers<List<Order>>([
   TypedReducer<List<Order>, OrdersLoadedAction>(_setLoadedOrders),
   TypedReducer<List<Order>, OrdersNotLoadedAction>(_setNoOrders),
   TypedReducer<List<Order>, SendInvoiceAction>(_sendInvoice),
+  TypedReducer<List<Order>, ReceiveInvoiceAction>(_receiveInvoice),
+  TypedReducer<List<Order>, SendPaymentAction>(_sendPayment),
+  TypedReducer<List<Order>, ReceivePaymentAction>(_receivePayment),
+  TypedReducer<List<Order>, CloseOrderAction>(_closeOrder),
 ]);
 
 List<Order> _sendInvoice(List<Order> orders, SendInvoiceAction action) {
   final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
   _orderRepository.sendInvoice(action.order, action.user);
+  return List.from(orders);
+}
+
+List<Order> _receiveInvoice(List<Order> orders, ReceiveInvoiceAction action) {
+  final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
+  _orderRepository.receiveInvoice(action.order, action.user);
+  return List.from(orders);
+}
+
+List<Order> _sendPayment(List<Order> orders, SendPaymentAction action) {
+  final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
+  _orderRepository.sendPayment(action.order, action.user);
+  return List.from(orders);
+}
+
+List<Order> _receivePayment(List<Order> orders, ReceivePaymentAction action) {
+  final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
+  _orderRepository.receivePayment(action.order, action.user);
+  return List.from(orders);
+}
+
+List<Order> _closeOrder(List<Order> orders, CloseOrderAction action) {
+  final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
+  _orderRepository.closeOrder(action.order, action.user);
   return List.from(orders);
 }
 

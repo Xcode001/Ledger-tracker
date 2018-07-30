@@ -50,6 +50,81 @@ class WebClient {
     }
   }
 
+  Future<bool> receiveInvoice(
+      int amount, String orderRs, String retailerRs) async {
+    Map jsonData = {
+      "\u{0024}class": "com.vsii.trd.ordertracker.ReceiveInvoice",
+      "newUpdatedDate": (new DateTime.now()).toString().split(' ')[0],
+      "newOrder": orderRs,
+      "retailer": retailerRs,
+      "timestamp": (new DateTime.now()).toString()
+    };
+    HttpClientResponse response =
+        await RouterClient.request(Router.RECEIVE_INVOICE_PATH, jsonData);
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to receive invoice');
+    }
+  }
+
+  Future<bool> sendPayment(
+      int amount, String orderRs, String retailerRs) async {
+    Map jsonData = {
+      "\u{0024}class": "com.vsii.trd.ordertracker.SendPayment",
+      "newUpdatedDate": (new DateTime.now()).toString().split(' ')[0],
+      "newOrder": orderRs,
+      "retailer": retailerRs,
+      "timestamp": (new DateTime.now()).toString()
+    };
+    HttpClientResponse response =
+        await RouterClient.request(Router.SEND_PAYMENT_PATH, jsonData);
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to send payment');
+    }
+  }
+
+  Future<bool> receivePayment(
+      int amount, String orderRs, String supplierRs) async {
+    Map jsonData = {
+      "\u{0024}class": "com.vsii.trd.ordertracker.ReceivePayment",
+      "newUpdatedDate": (new DateTime.now()).toString().split(' ')[0],
+      "newOrder": orderRs,
+      "supplier": supplierRs,
+      "timestamp": (new DateTime.now()).toString()
+    };
+    HttpClientResponse response =
+        await RouterClient.request(Router.RECEIVE_PAYMENT_PATH, jsonData);
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to receive payment');
+    }
+  }
+
+  Future<bool> closeOrder(int amount, String orderRs, String retailerRs) async {
+    Map jsonData = {
+      "\u{0024}class": "com.vsii.trd.ordertracker.CloseOrder",
+      "newUpdatedDate": (new DateTime.now()).toString().split(' ')[0],
+      "newOrder": orderRs,
+      "retailer": retailerRs,
+      "timestamp": (new DateTime.now()).toString()
+    };
+    HttpClientResponse response =
+        await RouterClient.request(Router.CLOSE_ORDER_PATH, jsonData);
+    if (response.statusCode == 200) {
+      return Future.value(true);
+    } else {
+      // If that response was not OK, throw an error.
+      throw Exception('Failed to send invoice');
+    }
+  }
+
   Future<bool> postOrder(Order order) async {
     Map jsonData = {
       "\u{0024}class": order.orderClass,

@@ -25,12 +25,6 @@ class HomeScreen extends StatelessWidget {
               ExtraActionsContainer(),
             ],
           ),
-//          body: ChooseRole(),
-//            switch(activeTab) {
-//            case AppTab.orders: return FilteredOrders();
-//            case AppTab.role: return FilteredOrders();
-//            case AppTab.stats: return FilteredOrders();
-//          },
           body: activeTab == AppTab.orders ? FilteredOrders() : Stats(),
           floatingActionButton: FloatingActionButton(
             key: ArchSampleKeys.addOrderFab,

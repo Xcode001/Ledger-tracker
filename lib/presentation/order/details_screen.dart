@@ -27,6 +27,9 @@ class DetailsScreen extends StatelessWidget {
           ConfirmButton(
             order: order,
             user: user,
+            userActions: user.role == "Supplier"
+                ? supplierOrderStatus
+                : retailerOrderStatus,
             onPressedButton: onConfirm,
           )
         ],

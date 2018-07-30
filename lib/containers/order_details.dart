@@ -63,13 +63,13 @@ class _ViewModel {
       case 'NEW':
         return store.dispatch(SendInvoiceAction(order, user));
       case 'INVOICE_SENT':
-        return store.dispatch(SendInvoiceAction(order, user));
+        return store.dispatch(ReceiveInvoiceAction(order, user));
       case 'INVOICE_RECEIVED':
-        return store.dispatch(SendInvoiceAction(order, user));
+        return store.dispatch(SendPaymentAction(order, user));
       case 'PAYMENT_SENT':
-        return store.dispatch(SendInvoiceAction(order, user));
+        return store.dispatch(ReceivePaymentAction(order, user));
       case 'PAYMENT_RECEIVED':
-        return store.dispatch(SendInvoiceAction(order, user));
+        return store.dispatch(CloseOrderAction(order, user));
     }
   }
 }

@@ -1,4 +1,4 @@
-import 'dart:_http';
+import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
@@ -10,6 +10,10 @@ class Router {
   static final String ORDER_PATH = '/api/Order';
   static final String ORDER_ENDPOINT = SERVER_ENDPOINT + '/api/Order';
   static final String SEND_INVOICE_PATH = '/api/SendInvoice';
+  static final String RECEIVE_INVOICE_PATH = '/api/ReceiveInvoice';
+  static final String SEND_PAYMENT_PATH = '/api/SendPayment';
+  static final String RECEIVE_PAYMENT_PATH = '/api/ReceivePayment';
+  static final String CLOSE_ORDER_PATH = '/api/CloseOrder';
 
   Router();
 }

@@ -4,12 +4,24 @@ import 'package:vsii_trader/models/models.dart';
 import 'package:vsii_trader/models/models.dart';
 import 'package:vsii_trader/models/models.dart';
 
+final List<String> supplierOrderStatus = [
+  'NEW',
+  'PAYMENT_SENT',
+];
+final List<String> retailerOrderStatus = [
+  'INVOICE_SENT',
+  'INVOICE_RECEIVED',
+  'PAYMENT_RECEIVED',
+];
+
 class ConfirmButton extends StatelessWidget {
   final Order order;
   final User user;
   final VoidCallback onPressedButton;
+  final List<String> userActions;
 
-  ConfirmButton({this.order, this.user, this.onPressedButton, Key key})
+  ConfirmButton(
+      {this.order, this.user, this.userActions, this.onPressedButton, Key key})
       : super(key: key);
 
   @override
@@ -17,7 +29,7 @@ class ConfirmButton extends StatelessWidget {
     final localizations = ArchSampleLocalizations.of(context);
 
     return AnimatedOpacity(
-        opacity: 1.0,
+        opacity: userActions.contains(order.status) ? 1.0 : 0.0,
         duration: Duration(milliseconds: 150),
         child: new RaisedButton(
           onPressed: onPressedButton,

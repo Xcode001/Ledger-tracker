@@ -54,6 +54,46 @@ class OrdersRepositoryFlutter implements OrdersRepository {
   }
 
   @override
+  Future receiveInvoice(Order order, User user) {
+    return Future.wait<dynamic>([
+      webClient.receiveInvoice(
+          int.parse(order.totalPrice.round().toString()),
+          'resource:' + order.orderClass + '#' + order.id,
+          'resource:' + user.userClass + '#' + user.email),
+    ]);
+  }
+
+  @override
+  Future sendPayment(Order order, User user) {
+    return Future.wait<dynamic>([
+      webClient.sendPayment(
+          int.parse(order.totalPrice.round().toString()),
+          'resource:' + order.orderClass + '#' + order.id,
+          'resource:' + user.userClass + '#' + user.email),
+    ]);
+  }
+
+  @override
+  Future receivePayment(Order order, User user) {
+    return Future.wait<dynamic>([
+      webClient.receivePayment(
+          int.parse(order.totalPrice.round().toString()),
+          'resource:' + order.orderClass + '#' + order.id,
+          'resource:' + user.userClass + '#' + user.email),
+    ]);
+  }
+
+  @override
+  Future closeOrder(Order order, User user) {
+    return Future.wait<dynamic>([
+      webClient.closeOrder(
+          int.parse(order.totalPrice.round().toString()),
+          'resource:' + order.orderClass + '#' + order.id,
+          'resource:' + user.userClass + '#' + user.email),
+    ]);
+  }
+
+  @override
   Future saveOrder(Order order) {
     return Future.wait<dynamic>([
       webClient.postOrder(order),
