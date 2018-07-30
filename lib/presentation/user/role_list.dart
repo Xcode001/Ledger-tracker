@@ -9,13 +9,13 @@ import 'package:vsii_trader/presentation/loading_indicator.dart';
 import 'package:vsii_trader/presentation/order/order_item.dart';
 import 'package:vsii_trader/presentation/home_screen.dart';
 
+typedef OnChooseCallback = Function(String role);
+
 class UserList extends StatelessWidget {
   final User user;
+  final Function(String) onSave;
 
-  UserList({
-    Key key,
-    @required this.user,
-  }) : super(key: key);
+  UserList({Key key, @required this.onSave, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,15 @@ class UserList extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: new GestureDetector(
-                onTap: () => _onRoleTap(context, user),
+                onTap: () => _onRoleTap(context, 'Retailer'),
                 child: Card(child: Image.asset('assets/images/shop.png')),
               ),
             ),
             Expanded(
-              child: Card(child: Image.asset('assets/images/delivery.png')),
+              child: new GestureDetector(
+                onTap: () => _onRoleTap(context, 'Supplier'),
+                child: Card(child: Image.asset('assets/images/delivery.png')),
+              ),
             ),
           ],
         ),
@@ -55,7 +58,8 @@ class UserList extends StatelessWidget {
 //    );
 //  }
 
-  void _onRoleTap(BuildContext context, User user) {
+  void _onRoleTap(BuildContext context, String role) {
+    onSave(role);
     Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (_) => new HomeScreen(),
 //        new MaterialPageRoute(builder: (_) => new HomeScreen())));

@@ -25,11 +25,13 @@ class User extends Object with _$UserSerializerMixin {
       String email,
       String phone,
       String role})
-      : this.username = !username.isEmpty ? username : "IBM",
-        this.email = !email.isEmpty ? email : '4202',
-        this.phone = !phone.isEmpty ? phone : '0123456789',
-        this.role = !role.isEmpty ? role : 'Retailer',
-        this.userClass = !role.isEmpty ?? "com.vsii.trd.ordertracker." + role;
+      : this.role = !role.isEmpty ? role : 'Retailer',
+        this.email = role == 'Supplier' ? '3665' : '4202',
+        this.phone = role == 'Supplier' ? '0123456789' : '0123456789',
+        this.username = role == 'Supplier' ? 'VSII' : "IBM",
+        this.userClass = role == 'Supplier'
+            ? "com.vsii.trd.ordertracker.Supplier"
+            : "com.vsii.trd.ordertracker.Retailer";
 
   User copyWith(
       {String userClass,

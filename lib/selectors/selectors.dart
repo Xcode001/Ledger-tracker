@@ -27,13 +27,24 @@ int numClosedSelector(List<Order> orders) =>
 
 List<Order> filteredOrdersSelector(
   List<Order> orders,
+  User user,
   VisibilityFilter activeFilter,
 ) {
-  return orders.where((order) {
+  final String userRs = user.role == 'Retailer'
+      ? user.userClass + '#7727'
+      : user.userClass + '#4696';
+  return orders.where((item) {
+    if (user.role == 'Retailer') {
+      return item.retailer.contains(userRs);
+    }
+    if (user.role == 'Supplier') {
+      return item.supplier.contains(userRs);
+    }
+  }).where((order) {
     if (activeFilter == VisibilityFilter.all) {
       return true;
     } else if (activeFilter == VisibilityFilter.newRequest) {
-      return order.status == 'New Request';
+      return order.status == 'New';
     } else if (activeFilter == VisibilityFilter.inProgress) {
       return order.status == 'Delivering' || order.status == 'Invoicing';
     } else if (activeFilter == VisibilityFilter.closed) {

@@ -6,8 +6,7 @@ class WebClient {
   const WebClient();
 
   Future<User> fetchUser() async {
-    return User(
-        username: 'IBM', email: '4202', phone: 'phone', role: 'Retailer');
+    return User(role: 'Retailer');
   }
 
   Future<bool> postUser(User user) async {

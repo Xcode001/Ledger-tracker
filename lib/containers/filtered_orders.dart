@@ -33,6 +33,7 @@ class _ViewModel {
     return _ViewModel(
       orders: filteredOrdersSelector(
         ordersSelector(store.state),
+        userSelector(store.state),
         activeFilterSelector(store.state),
       ),
       loading: store.state.isLoading,

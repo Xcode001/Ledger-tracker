@@ -72,5 +72,6 @@ class ArchSampleKeys {
 
   // Add Screen
   static final addOrderScreen = const Key('__addOrderScreen__');
+  static final chooseRoleIntroScreen = const Key('__chooseRoleIntroScreen__');
   static final saveNewOrder = const Key('__saveNewOrder__');
 }

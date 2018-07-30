@@ -7,6 +7,7 @@ import 'package:vsii_trader/actions/user_actions.dart';
 import 'package:vsii_trader/containers/add_order.dart';
 import 'package:vsii_trader/localization.dart';
 import 'package:vsii_trader/middleware/store_orders_middleware.dart';
+import 'package:vsii_trader/middleware/store_user_middleware.dart';
 import 'package:vsii_trader/models/models.dart';
 import 'package:vsii_trader/presentation/home_screen.dart';
 import 'package:vsii_trader/presentation/choose_role_screen.dart';
@@ -19,11 +20,15 @@ void main() {
   runApp(ReduxApp());
 }
 
+List<Middleware<AppState>> listMiddleWare = new List<Middleware<AppState>>();
+
 class ReduxApp extends StatelessWidget {
   final store = Store<AppState>(
     appReducer,
     initialState: AppState.loading(),
-    middleware: createStoreOrdersMiddleware(),
+    middleware: listMiddleWare
+      ..addAll(createStoreUserMiddleware())
+      ..addAll(createStoreOrdersMiddleware()),
   );
 
   @override
