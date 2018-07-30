@@ -41,12 +41,13 @@ class AddOrderAction {
 class SendInvoiceAction {
   final Order order;
   final User user;
+  final int amount;
 
-  SendInvoiceAction(this.order, this.user);
+  SendInvoiceAction(this.order, this.user, this.amount);
 
   @override
   String toString() {
-    return 'SendInvoiceAction{order: $order, user: $user}';
+    return 'SendInvoiceAction{order: $order, user: $user, amount: $amount}';
   }
 }
 

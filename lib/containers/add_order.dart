@@ -20,7 +20,7 @@ class AddOrder extends StatelessWidget {
             desciption: desciption,
             quantity: quantity,
             totalPrice: 0.00,
-            status: 'New Request',
+            status: 'NEW',
             updatedDate: (new DateTime.now()).toString().split(' ')[0],
           )));
         };

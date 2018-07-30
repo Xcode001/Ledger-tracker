@@ -80,7 +80,7 @@ class OrderItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: new TextStyle(
                     color:
-                        order.status == 'Closed' ? Colors.red : Colors.green),
+                        order.status == 'CLOSED' ? Colors.red : Colors.green),
               ),
             ],
           ),

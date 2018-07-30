@@ -61,7 +61,7 @@ class UserList extends StatelessWidget {
   void _onRoleTap(BuildContext context, String role) {
     onSave(role);
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (_) => new HomeScreen(),
+          builder: (_) => new HomeScreen(role),
 //        new MaterialPageRoute(builder: (_) => new HomeScreen())));
         ));
   }

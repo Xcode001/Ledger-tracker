@@ -44,10 +44,10 @@ class OrdersRepositoryFlutter implements OrdersRepository {
   }
 
   @override
-  Future sendInvoice(Order order, User user) {
+  Future sendInvoice(Order order, User user, int amount) {
     return Future.wait<dynamic>([
       webClient.sendInvoice(
-          int.parse(order.totalPrice.round().toString()),
+          amount,
           'resource:' + order.orderClass + '#' + order.id,
           'resource:' + user.userClass + '#' + user.email),
     ]);

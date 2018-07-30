@@ -20,7 +20,7 @@ final ordersReducer = combineReducers<List<Order>>([
 
 List<Order> _sendInvoice(List<Order> orders, SendInvoiceAction action) {
   final OrdersRepository _orderRepository = new OrdersRepositoryFlutter();
-  _orderRepository.sendInvoice(action.order, action.user);
+  _orderRepository.sendInvoice(action.order, action.user, action.amount);
   return List.from(orders);
 }
 

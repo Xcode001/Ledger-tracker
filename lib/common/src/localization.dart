@@ -62,6 +62,27 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get showNewOrder => Intl.message(
+        'Show New Order',
+        name: 'showNewOrder',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get showProcessingOrder => Intl.message(
+        'Show Processing Order',
+        name: 'showProcessingOrder',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get showClosedOrder => Intl.message(
+        'Show Closed Order',
+        name: 'showClosedOrder',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get newRequest => Intl.message(
         'New Request',
         name: 'newRequest',
@@ -209,6 +230,13 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get enterAmount => Intl.message(
+        'Enter amount',
+        name: 'enterAmount',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get price => Intl.message(
         'Price',
         name: 'price',
@@ -261,6 +289,13 @@ class ArchSampleLocalizations {
   String get emptyQuanityError => Intl.message(
         'Please enter quanity',
         name: 'emptyQuanityError',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get emptyAmountError => Intl.message(
+        'Please enter amount',
+        name: 'emptyAmountError',
         args: [],
         locale: locale.toString(),
       );

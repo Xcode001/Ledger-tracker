@@ -12,7 +12,7 @@ abstract class OrdersRepository {
 
   Future saveOrder(Order order);
 
-  Future sendInvoice(Order order, User user);
+  Future sendInvoice(Order order, User user, int amount);
 
   Future receiveInvoice(Order order, User user);
 

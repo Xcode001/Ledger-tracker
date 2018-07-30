@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:vsii_trader/repository/orders/order_entity.dart';
 import 'package:vsii_trader/models/order.dart';
 import 'package:vsii_trader/common/router.dart';
+import 'package:vsii_trader/common/notification.dart';
 
 class WebClient {
   const WebClient();
@@ -163,6 +164,7 @@ class WebClient {
 //          "supplier": order.supplier
 //        }));
     if (response.statusCode == 200) {
+//      Notification.showNotification();
       return Future.value(true);
     } else {
       // If that response was not OK, throw an error.

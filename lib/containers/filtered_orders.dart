@@ -19,7 +19,7 @@ class FilteredOrders extends StatelessWidget {
       builder: (context, vm) {
         return OrderList(
           orders: vm.orders,
-//          onRefresh: vm.refresh,
+          onRefresh: vm.refresh,
         );
       },
     );
@@ -29,28 +29,26 @@ class FilteredOrders extends StatelessWidget {
 class _ViewModel {
   final List<Order> orders;
   final bool loading;
-//  final Future<void> refresh;
+  final Function refresh;
 
   _ViewModel({
     @required this.orders,
     @required this.loading,
-//    this.refresh,
+    this.refresh,
   });
 
   static _ViewModel fromStore(Store<AppState> store) {
     return _ViewModel(
-      orders: filteredOrdersSelector(
-        ordersSelector(store.state),
-        userSelector(store.state),
-        activeFilterSelector(store.state),
-      ),
-      loading: store.state.isLoading,
-//        refresh: _handleRefresh(store)
-    );
+        orders: filteredOrdersSelector(
+          ordersSelector(store.state),
+          userSelector(store.state),
+          activeFilterSelector(store.state),
+        ),
+        loading: store.state.isLoading,
+        refresh: () => _handleRefresh(store));
   }
 
-  static Future<void> _handleRefresh(Store<AppState> store) async {
+  static Function _handleRefresh(Store<AppState> store) {
     store.dispatch(LoadOrdersAction());
-    return null;
   }
 }

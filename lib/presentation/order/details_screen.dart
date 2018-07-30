@@ -4,10 +4,17 @@ import 'package:vsii_trader/common/flutter_architecture_samples.dart';
 import 'package:vsii_trader/models/models.dart';
 import 'package:vsii_trader/presentation/confirm_button.dart';
 
+bool notNull(Object o) => o != null;
+
+typedef OnConfirmCallback = Function(int amount);
+
 class DetailsScreen extends StatelessWidget {
   final Order order;
   final User user;
-  final Function onConfirm;
+  final Function(int amount) onConfirm;
+  static final GlobalKey<FormState> _formAmountKey = GlobalKey<FormState>();
+  static final GlobalKey<FormFieldState<String>> _amountKey =
+      GlobalKey<FormFieldState<String>>();
 
   DetailsScreen({
     Key key,
@@ -30,7 +37,16 @@ class DetailsScreen extends StatelessWidget {
             userActions: user.role == "Supplier"
                 ? supplierOrderStatus
                 : retailerOrderStatus,
-            onPressedButton: onConfirm,
+            onPressedButton: () {
+              if ((_formAmountKey.currentState != null &&
+                      _formAmountKey.currentState.validate()) ||
+                  order.status != 'NEW') {
+                onConfirm(order.status == 'NEW'
+                    ? int.parse(_amountKey.currentState.value)
+                    : int.parse(order.totalPrice.round().toString()));
+                Navigator.pop(context);
+              }
+            },
           )
         ],
 //        actions: [
@@ -100,7 +116,7 @@ class DetailsScreen extends StatelessWidget {
                         order.status,
                         key: ArchSampleKeys.detailsOrderItemStatus,
                         style: Theme.of(context).textTheme.display1.apply(
-                            color: order.status == "Closed"
+                            color: order.status == "CLOSED"
                                 ? Colors.red
                                 : Colors.green),
                       ),
@@ -182,36 +198,59 @@ class DetailsScreen extends StatelessWidget {
                       ),
 
                       // Total Price
-                      Hero(
-                        tag: '${order.totalPrice}__heroTag',
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          padding: EdgeInsets.only(
-                            top: 8.0,
-                            bottom: 16.0,
-                          ),
-                          child: Text(
-                            localizations.price,
-                            key: ArchSampleKeys.detailsOrderItemTotalPrice,
-                            style: Theme.of(context).textTheme.headline,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        key: ArchSampleKeys.detailsOrderItemTotalPrice,
-                        children: [
-                          Text(
-                            order.totalPrice.round().toString(),
-                            key: ArchSampleKeys.detailsOrderItemTotalPrice,
-                            style: Theme.of(context).textTheme.display1,
-                          ),
-                          Text(
-                            ' ' + localizations.usd,
-                            key: ArchSampleKeys.detailsOrderCurrency,
-                            style: Theme.of(context).textTheme.display1,
-                          ),
-                        ],
-                      ),
+                      order.status != "NEW" || user.role == "Retailer"
+                          ? Hero(
+                              tag: '${order.totalPrice}__heroTag',
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                padding: EdgeInsets.only(
+                                  top: 8.0,
+                                  bottom: 16.0,
+                                ),
+                                child: Text(
+                                  localizations.price,
+                                  key:
+                                      ArchSampleKeys.detailsOrderItemTotalPrice,
+                                  style: Theme.of(context).textTheme.headline,
+                                ),
+                              ),
+                            )
+                          : null,
+                      order.status != "NEW" || user.role == "Retailer"
+                          ? Row(
+                              key: ArchSampleKeys.detailsOrderItemTotalPrice,
+                              children: [
+                                Text(
+                                  order.totalPrice.round().toString(),
+                                  key:
+                                      ArchSampleKeys.detailsOrderItemTotalPrice,
+                                  style: Theme.of(context).textTheme.display1,
+                                ),
+                                Text(
+                                  ' ' + localizations.usd,
+                                  key: ArchSampleKeys.detailsOrderCurrency,
+                                  style: Theme.of(context).textTheme.display1,
+                                ),
+                              ],
+                            )
+                          : null,
+                      order.status == "NEW" && user.role == "Supplier"
+                          ? Form(
+                              key: _formAmountKey,
+                              child: TextFormField(
+                                keyboardType: TextInputType.number,
+                                key: _amountKey,
+                                style: Theme.of(context).textTheme.display1,
+                                decoration: InputDecoration(
+                                  labelText: localizations.enterAmount,
+                                ),
+                                validator: (val) {
+                                  return val.trim().isEmpty
+                                      ? localizations.emptyAmountError
+                                      : null;
+                                },
+                              ))
+                          : null,
 
                       //Updated Date
                       Hero(
@@ -234,7 +273,7 @@ class DetailsScreen extends StatelessWidget {
                         key: ArchSampleKeys.detailsOrderUpdatedDate,
                         style: Theme.of(context).textTheme.display1,
                       ),
-                    ],
+                    ].where(notNull).toList(),
                   ),
                 )),
 //                Expanded(

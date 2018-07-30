@@ -14,12 +14,12 @@ class OrderList extends StatelessWidget {
 //  final Function(Order, bool) onCheckboxChanged;
 //  final Function(Order) onRemove;
 //  final Function(Order) onUndoRemove;
-//  final Future<void> onRefresh;
+  final Function onRefresh;
 
   OrderList({
     Key key,
     @required this.orders,
-//    this.onRefresh,
+    this.onRefresh,
   }) : super(key: key);
 
   @override
@@ -28,10 +28,15 @@ class OrderList extends StatelessWidget {
 //      return _buildListView();
       return loading
           ? LoadingIndicator(key: ArchSampleKeys.ordersLoading)
-          : _buildListView();
-//          : new RefreshIndicator(
-//              child: _buildListView(), onRefresh: () => onRefresh);
+//          : _buildListView();
+          : new RefreshIndicator(
+              child: _buildListView(), onRefresh: () => _handleRefresh());
     });
+  }
+
+  Future<Null> _handleRefresh() async {
+    onRefresh();
+    return null;
   }
 
   ListView _buildListView() {

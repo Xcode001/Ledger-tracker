@@ -33,7 +33,7 @@ class OrderDetails extends StatelessWidget {
 class _ViewModel {
   final Order order;
   final User user;
-  final Function onConfirm;
+  final Function(int amount) onConfirm;
 
   _ViewModel({
     @required this.order,
@@ -48,7 +48,7 @@ class _ViewModel {
     return _ViewModel(
       order: order,
       user: user,
-      onConfirm: () => _onConfirm(store, order, user),
+      onConfirm: (amount) => _onConfirm(store, order, user, amount),
 //      toggleCompleted: (isComplete) {
 //        store.dispatch(UpdateOrderAction(
 //          order.id,
@@ -58,10 +58,11 @@ class _ViewModel {
     );
   }
 
-  static void _onConfirm(Store<AppState> store, Order order, User user) {
+  static void _onConfirm(
+      Store<AppState> store, Order order, User user, int amount) {
     switch (order.status) {
       case 'NEW':
-        return store.dispatch(SendInvoiceAction(order, user));
+        return store.dispatch(SendInvoiceAction(order, user, amount));
       case 'INVOICE_SENT':
         return store.dispatch(ReceiveInvoiceAction(order, user));
       case 'INVOICE_RECEIVED':

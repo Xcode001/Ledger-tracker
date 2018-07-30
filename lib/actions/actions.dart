@@ -21,3 +21,14 @@ class UpdateTabAction {
     return 'UpdateTabAction{newTab: $newTab}';
   }
 }
+
+class UpdateSelectedRetailerAction {
+  final String value;
+
+  UpdateSelectedRetailerAction(this.value);
+
+  @override
+  String toString() {
+    return 'UpdateSelectedRetailerAction{value: $value}';
+  }
+}
