@@ -29,7 +29,7 @@ For help getting started with Flutter, view our online
 
 ## Versioning
 
-Recommend [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+Recommend [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://192.168.0.36/ledger-tracker/ledger-tracker-mobile/tags). 
 
 ## Authors
 
