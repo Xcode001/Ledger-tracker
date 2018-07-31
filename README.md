@@ -9,9 +9,9 @@ For help getting started with Flutter, view our online
 
 ### Prerequisites
 
-[Android Stuio](https://developer.android.com/studio/install)
-[Visual Code](https://code.visualstudio.com/download)
-[Xcode](https://developer.apple.com/xcode/)
+* [Android Stuio](https://developer.android.com/studio/install)
+* [Visual Code](https://code.visualstudio.com/download)
+* [Xcode](https://developer.apple.com/xcode/)
 
 ### Installing
 
