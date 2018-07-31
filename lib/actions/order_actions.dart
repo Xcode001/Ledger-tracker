@@ -38,6 +38,67 @@ class AddOrderAction {
   }
 }
 
+class SendInvoiceAction {
+  final Order order;
+  final User user;
+  final int amount;
+
+  SendInvoiceAction(this.order, this.user, this.amount);
+
+  @override
+  String toString() {
+    return 'SendInvoiceAction{order: $order, user: $user, amount: $amount}';
+  }
+}
+
+class ReceiveInvoiceAction {
+  final Order order;
+  final User user;
+
+  ReceiveInvoiceAction(this.order, this.user);
+
+  @override
+  String toString() {
+    return 'ReceiveInvoiceAction{order: $order, user: $user}';
+  }
+}
+
+class SendPaymentAction {
+  final Order order;
+  final User user;
+
+  SendPaymentAction(this.order, this.user);
+
+  @override
+  String toString() {
+    return 'SendPaymentAction{order: $order, user: $user}';
+  }
+}
+
+class ReceivePaymentAction {
+  final Order order;
+  final User user;
+
+  ReceivePaymentAction(this.order, this.user);
+
+  @override
+  String toString() {
+    return 'SendPaymentAction{order: $order, user: $user}';
+  }
+}
+
+class CloseOrderAction {
+  final Order order;
+  final User user;
+
+  CloseOrderAction(this.order, this.user);
+
+  @override
+  String toString() {
+    return 'CloseOrderAction{order: $order, user: $user}';
+  }
+}
+
 class UpdateFilterAction {
   final VisibilityFilter newFilter;
 

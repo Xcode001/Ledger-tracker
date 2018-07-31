@@ -5,6 +5,7 @@ import 'package:redux/redux.dart';
 import 'package:vsii_trader/models/models.dart';
 import 'package:vsii_trader/presentation/order/details_screen.dart';
 import 'package:vsii_trader/selectors/selectors.dart';
+import 'package:vsii_trader/actions/order_actions.dart';
 
 class OrderDetails extends StatelessWidget {
   final String id;
@@ -20,7 +21,9 @@ class OrderDetails extends StatelessWidget {
       },
       builder: (context, vm) {
         return DetailsScreen(
-          order: vm.order
+          order: vm.order,
+          user: vm.user,
+          onConfirm: vm.onConfirm,
         );
       },
     );
@@ -29,16 +32,23 @@ class OrderDetails extends StatelessWidget {
 
 class _ViewModel {
   final Order order;
+  final User user;
+  final Function(int amount) onConfirm;
 
   _ViewModel({
     @required this.order,
+    @required this.user,
+    @required this.onConfirm,
   });
 
   factory _ViewModel.from(Store<AppState> store, String id) {
     final order = orderSelector(ordersSelector(store.state), id).value;
+    final user = userSelector(store.state);
 
     return _ViewModel(
       order: order,
+      user: user,
+      onConfirm: (amount) => _onConfirm(store, order, user, amount),
 //      toggleCompleted: (isComplete) {
 //        store.dispatch(UpdateOrderAction(
 //          order.id,
@@ -46,5 +56,21 @@ class _ViewModel {
 //        ));
 //      },
     );
+  }
+
+  static void _onConfirm(
+      Store<AppState> store, Order order, User user, int amount) {
+    switch (order.status) {
+      case 'NEW':
+        return store.dispatch(SendInvoiceAction(order, user, amount));
+      case 'INVOICE_SENT':
+        return store.dispatch(ReceiveInvoiceAction(order, user));
+      case 'INVOICE_RECEIVED':
+        return store.dispatch(SendPaymentAction(order, user));
+      case 'PAYMENT_SENT':
+        return store.dispatch(ReceivePaymentAction(order, user));
+      case 'PAYMENT_RECEIVED':
+        return store.dispatch(CloseOrderAction(order, user));
+    }
   }
 }

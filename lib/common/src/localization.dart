@@ -62,9 +62,72 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get showNewOrder => Intl.message(
+        'Show New Order',
+        name: 'showNewOrder',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get showProcessingOrder => Intl.message(
+        'Show Processing Order',
+        name: 'showProcessingOrder',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get showClosedOrder => Intl.message(
+        'Show Closed Order',
+        name: 'showClosedOrder',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get newRequest => Intl.message(
         'New Request',
         name: 'newRequest',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get invoiceSent => Intl.message(
+        'Invoice Sent',
+        name: 'invoiceSent',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get invoiceRecieved => Intl.message(
+        'Invoice Recieved',
+        name: 'invoiceRecieved',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get paymentSent => Intl.message(
+        'Payment Sent',
+        name: 'paymentSent',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get paymentReceived => Intl.message(
+        'Payment Received',
+        name: 'paymentReceived',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get closed => Intl.message(
+        'Closed',
+        name: 'closed',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get confirm => Intl.message(
+        'Confirm',
+        name: 'confirm',
         args: [],
         locale: locale.toString(),
       );
@@ -76,9 +139,9 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
-  String get closed => Intl.message(
-        'Closed',
-        name: 'closed',
+  String get draft => Intl.message(
+        'Draft',
+        name: 'draft',
         args: [],
         locale: locale.toString(),
       );
@@ -132,6 +195,20 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get supplier => Intl.message(
+        'Supplier',
+        name: 'supplier',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get updated => Intl.message(
+        'Updated',
+        name: 'updated',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get desciption => Intl.message(
         'Desciption',
         name: 'desciption',
@@ -139,9 +216,44 @@ class ArchSampleLocalizations {
         locale: locale.toString(),
       );
 
+  String get status => Intl.message(
+        'Status',
+        name: 'status',
+        args: [],
+        locale: locale.toString(),
+      );
+
   String get quanity => Intl.message(
         'Quanity',
         name: 'quanity',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get enterAmount => Intl.message(
+        'Enter amount',
+        name: 'enterAmount',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get price => Intl.message(
+        'Price',
+        name: 'price',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get packs => Intl.message(
+        'Packs',
+        name: 'packs',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get usd => Intl.message(
+        'USD',
+        name: 'usd',
         args: [],
         locale: locale.toString(),
       );
@@ -177,6 +289,13 @@ class ArchSampleLocalizations {
   String get emptyQuanityError => Intl.message(
         'Please enter quanity',
         name: 'emptyQuanityError',
+        args: [],
+        locale: locale.toString(),
+      );
+
+  String get emptyAmountError => Intl.message(
+        'Please enter amount',
+        name: 'emptyAmountError',
         args: [],
         locale: locale.toString(),
       );

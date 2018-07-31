@@ -4,13 +4,15 @@ import 'package:vsii_trader/containers/active_tab.dart';
 import 'package:vsii_trader/containers/extra_actions_container.dart';
 import 'package:vsii_trader/containers/filter_selector.dart';
 import 'package:vsii_trader/containers/filtered_orders.dart';
+import 'package:vsii_trader/containers/choose_role.dart';
 import 'package:vsii_trader/containers/stats.dart';
 import 'package:vsii_trader/containers/tab_selector.dart';
 import 'package:vsii_trader/localization.dart';
 import 'package:vsii_trader/models/models.dart';
 
 class HomeScreen extends StatelessWidget {
-  HomeScreen() : super(key: ArchSampleKeys.homeScreen);
+  final String userRole;
+  HomeScreen(this.userRole) : super(key: ArchSampleKeys.homeScreen);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,9 @@ class HomeScreen extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             key: ArchSampleKeys.addOrderFab,
             onPressed: () {
-              Navigator.pushNamed(context, ArchSampleRoutes.addOrder);
+              userRole == 'Retailer'
+                  ? Navigator.pushNamed(context, ArchSampleRoutes.addOrder)
+                  : null;
             },
             child: Icon(Icons.add),
             tooltip: ArchSampleLocalizations.of(context).addOrder,

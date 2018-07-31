@@ -13,14 +13,14 @@ class AddOrder extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreConnector<AppState, OnSaveCallback>(
       converter: (Store<AppState> store) {
-        return (id, supplier, desciption, quanity) {
+        return (id, supplier, desciption, quantity) {
           store.dispatch(AddOrderAction(Order(
             id: id,
             supplier: supplier,
             desciption: desciption,
-            quanity: quanity,
+            quantity: quantity,
             totalPrice: 0.00,
-            status: 'New Request',
+            status: 'NEW',
             updatedDate: (new DateTime.now()).toString().split(' ')[0],
           )));
         };

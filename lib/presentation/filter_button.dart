@@ -43,7 +43,7 @@ class FilterButton extends StatelessWidget {
                 key: ArchSampleKeys.newRequestFilter,
                 value: VisibilityFilter.newRequest,
                 child: Text(
-                  ArchSampleLocalizations.of(context).showNewRequest,
+                  ArchSampleLocalizations.of(context).showNewOrder,
                   style: activeStyle,
 //                  style: activeFilter == VisibilityFilter.newRequest
 //                      ? activeStyle
@@ -54,7 +54,7 @@ class FilterButton extends StatelessWidget {
                 key: ArchSampleKeys.inProgressFilter,
                 value: VisibilityFilter.inProgress,
                 child: Text(
-                  ArchSampleLocalizations.of(context).showInProgress,
+                  ArchSampleLocalizations.of(context).showProcessingOrder,
                   style: activeStyle,
 //                  style: activeFilter == VisibilityFilter.completed
 //                      ? activeStyle
@@ -65,7 +65,7 @@ class FilterButton extends StatelessWidget {
                 key: ArchSampleKeys.closedFilter,
                 value: VisibilityFilter.closed,
                 child: Text(
-                  ArchSampleLocalizations.of(context).showClosed,
+                  ArchSampleLocalizations.of(context).showClosedOrder,
                   style: activeStyle,
 //                  style: activeFilter == VisibilityFilter.completed
 //                      ? activeStyle

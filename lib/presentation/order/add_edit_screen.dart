@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:vsii_trader/common/flutter_architecture_samples.dart';
 import 'package:vsii_trader/models/models.dart';
 import 'package:vsii_trader/common/uuid.dart';
+import 'package:vsii_trader/containers/dropdown_selector.dart';
 
 typedef OnSaveCallback = Function(
     String id, String supplier, String description, int quanity);
@@ -64,14 +65,17 @@ class AddEditScreen extends StatelessWidget {
                       : null;
                 },
               ),
-              DropdownButton<String>(
-                  value: _supplier,
-                  key: _supplierKey,
-                  items: dropdownMenuOptions,
-                  onChanged: (String newValue) {
-                    _supplier = newValue;
-                    return newValue;
-                  }),
+              DropDownSelector(
+                key: _supplierKey,
+              ),
+//              DropdownButton<String>(
+//                  value: _supplier,
+//                  key: _supplierKey,
+//                  items: dropdownMenuOptions,
+//                  onChanged: (String newValue) {
+//                    _supplier = newValue;
+//                    return newValue;
+//                  }),
               TextFormField(
                 keyboardType: TextInputType.text,
                 key: _descriptionKey,
